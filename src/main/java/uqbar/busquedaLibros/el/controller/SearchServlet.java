@@ -16,8 +16,11 @@ public class SearchServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String titulo = request.getParameter("titulo");
+		
 		Collection<Libro> libros = Biblioteca.getInstance().buscar(titulo);
+		
 		request.getSession().setAttribute("libros", libros);
+		
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 }
